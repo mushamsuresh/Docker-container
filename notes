@@ -27,3 +27,52 @@ RUN pip install -r requirements.txt
 # Run the app
 CMD ["python", "app.py"]
 🔒 Everything runs inside the container, not affecting your host system.
+
+Docker Commands Cheat Sheet
+1. Basic Docker Commands
+docker version: Shows Docker version installed
+docker info: Shows system-wide info
+docker help: Lists available Docker commands
+2. Working with Images
+docker pull <image>: Download image from Docker Hub
+docker images: List all downloaded images
+docker build -t <name> .: Build an image from Dockerfile
+docker rmi <image>: Remove an image
+3. Working with Containers
+docker run <image>: Run a container
+docker run -it <image> /bin/bash: Run interactively with terminal
+docker run -d <image>: Run in detached mode
+docker ps: List running containers
+docker ps -a: List all containers
+docker stop <container_id>: Stop a container
+docker start <container_id>: Start a container
+docker restart <container_id>: Restart container
+docker rm <container_id>: Remove a container
+docker exec -it <container_id> /bin/bash: Open terminal in container
+docker logs <container_id>: Show container logs
+4. Volumes and Data Sharing
+docker volume create <volume_name>: Create a volume
+docker volume ls: List volumes
+docker run -v volume_name:/data ...: Attach volume to container
+docker volume rm <volume_name>: Remove a volume
+5. Networks
+docker network ls: List networks
+docker network create <network_name>: Create a network
+docker network rm <network_name>: Remove a network
+6. Dockerfile / Image Build
+docker build -t <image_name> .: Build image from Dockerfile
+Docker Commands Cheat Sheet
+docker tag <image_id> <name:tag>: Tag an image
+docker save -o image.tar <image>: Save image to tar
+docker load -i image.tar: Load image from tar
+7. Docker Hub / Registry
+docker login: Login to Docker Hub
+docker tag <image> username/repo:tag: Tag image for Docker Hub
+docker push username/repo:tag: Push image to Docker Hub
+docker pull username/repo:tag: Pull image from Docker Hub
+8. Docker Compose
+docker-compose up: Start services
+docker-compose up -d: Start in detached mode
+docker-compose down: Stop and remove services
+docker-compose ps: List services
+docker-compose logs: View logs
