@@ -140,20 +140,6 @@ CMD ["python", "app.py"]
 
 ---
 
-## 🧠 Final Thoughts
-
-Containers (especially with Docker) revolutionize how we develop, ship, and run applications. Whether you're building microservices or experimenting with a single app, containers offer **portability**, **consistency**, and **speed**.
-
-> ✨ With Docker, you "build once and run anywhere."
-
----
-
-## 📚 Useful Links
-- [Docker Official Docs](https://docs.docker.com/)
-- [Docker Hub](https://hub.docker.com/)
-- [Play with Docker](https://labs.play-with-docker.com/)
-
----
 
 ### ✅ Docker Networking commands
 docker run -d --name app --network bridge -p 8080:80 nginx     
@@ -163,8 +149,11 @@ docker run --network host nginx
 docker run --network none busybox   
 ## You live in a completely isolated bunker. None network
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_container
-## To find the docker container ip address. so that we can connect to the external port 8080:80
-
-
+## To find the docker container ip address which talk to internal containers. Not connected to external port.
+ping host.docker.internal   or ipconfig  
+## this will give the docker IPv4 address, which talks to external world.
+ 
+## Note: Every container will have the same 8080:80 port only. Ex: container-1 port 8080:80, container-2 port 8081
+like this we can differentiate the containers network. 
 
 Made with 💙 for beginners exploring Docker & Containers.
