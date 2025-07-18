@@ -162,6 +162,8 @@ docker run --network host nginx
 ## Host network. It is like moving into a main house with no reception. easy access but less secure
 docker run --network none busybox   
 ## You live in a completely isolated bunker. None network
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_container
+## To find the docker container ip address. so that we can connect to the external port 8080:80
 
 
 
