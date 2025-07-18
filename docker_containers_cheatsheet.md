@@ -156,9 +156,12 @@ Containers (especially with Docker) revolutionize how we develop, ship, and run 
 ---
 
 ### ✅ Docker Networking commands
-docker run -d --name app --network bridge -p 8080:80 nginx     ## Bridge host network. It is like an apt building
-docker run --network host nginx       ## Host network. It is like moving into a main house with no reception. easy access but less secure
-docker run --network none busybox   ## You live in a completely isolated bunker. None network
+docker run -d --name app --network bridge -p 8080:80 nginx     
+## Bridge host network. It is like an apt building
+docker run --network host nginx       
+## Host network. It is like moving into a main house with no reception. easy access but less secure
+docker run --network none busybox   
+## You live in a completely isolated bunker. None network
 
 
 
