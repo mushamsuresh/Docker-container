@@ -139,6 +139,24 @@ CMD ["python", "app.py"]
 | `docker-compose logs` | View service logs |
 
 ---
+| Command       | Description                                                                                                                                           |   |          |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | - | -------- |
+| `FROM`        | **Sets the base image** for your Docker image. Every Dockerfile must start with this.<br>📌 Example: `FROM ubuntu:20.04`                              |   |          |
+| `LABEL`       | Adds metadata (like version, description).<br>📌 Example: `LABEL maintainer="you@example.com"`                                                        |   |          |
+| `ENV`         | Sets environment variables.<br>📌 Example: `ENV APP_ENV=production`                                                                                   |   |          |
+| `RUN`         | Executes a command **during the image build** (layered).<br>📌 Example: `RUN apt-get update && apt-get install -y nginx`                              |   |          |
+| `COPY`        | Copies files from your **local machine to the image**.<br>📌 Example: `COPY app.py /app/`                                                             |   |          |
+| `ADD`         | Like `COPY` but also supports downloading URLs and extracting `.tar` files.<br>📌 Example: `ADD https://example.com/file.zip /files/`                 |   |          |
+| `WORKDIR`     | Sets the **working directory** for all subsequent instructions.<br>📌 Example: `WORKDIR /app`                                                         |   |          |
+| `CMD`         | Defines the **default command** to run when a container starts.<br>📌 Example: `CMD ["python", "app.py"]`                                             |   |          |
+| `ENTRYPOINT`  | Configures a container to run as an executable with fixed command.<br>📌 Example: `ENTRYPOINT ["nginx", "-g", "daemon off;"]`                         |   |          |
+| `EXPOSE`      | Documents the **port** the container listens on (for information only).<br>📌 Example: `EXPOSE 80`                                                    |   |          |
+| `VOLUME`      | Creates a mount point for **persistent or shared storage**.<br>📌 Example: `VOLUME /data`                                                             |   |          |
+| `USER`        | Specifies the user to run commands inside the container.<br>📌 Example: `USER appuser`                                                                |   |          |
+| `ARG`         | Defines build-time variables (used with `--build-arg`).<br>📌 Example: `ARG VERSION=1.0`                                                              |   |          |
+| `HEALTHCHECK` | Defines a command to check if the container is still healthy.<br>📌 Example: \`HEALTHCHECK CMD curl --fail [http://localhost:80](http://localhost:80) |   | exit 1\` |
+| `SHELL`       | Changes the shell used for `RUN` instructions.<br>📌 Example: `SHELL ["powershell", "-command"]` (for Windows images)                                 |   |          |
+| `ONBUILD`     | Adds a trigger instruction to be executed when the image is used as a base.<br>📌 Example: `ONBUILD COPY . /app`                                      |   |          |
 
 
 ### ✅ Docker Networking commands
