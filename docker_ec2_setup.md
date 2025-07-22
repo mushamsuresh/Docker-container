@@ -105,8 +105,8 @@ vi Dockerfile
 ## 🧱 Step 6: Build and Run Docker Container
 
 ```bash
-docker build -t myapp .
-docker run -d -p 80:80 myapp
+docker build -t myapp .     ## build a image
+docker run -d -p 80:80 myapp   ## create a container and run
 ```
 
 ---
