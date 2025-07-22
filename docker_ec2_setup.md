@@ -27,6 +27,7 @@ Since we're using **Amazon Linux 2023**, use the following commands:
 ```bash
 sudo dnf update -y                     # Update packages
 sudo dnf install docker -y            # Install Docker
+
 If it says “No match for argument: docker”, add the Docker repository first:
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo dnf install docker-ce docker-ce-cli containerd.io -y
