@@ -108,7 +108,7 @@ CMD ["python", "app.py"]
 | `docker network disconnect <network-name> <container-name>` | Remove a Container from the Network. |
 | `docker network prune` | Remove all the unused Docker Networks |
 | `docker run -dit --name mycontainer --network demo-network ubuntu` | Run the container and attach it to the network |
-| `docker inspect e43da96be2de | findstr -i "NetworkMode" ` | You can check the network mode of a container |
+| `docker inspect e43da96be2de  findstr -i "NetworkMode" ` | You can check the network mode of a container |
 ## If it shows "NetworkMode": "host" — you need to recreate the container using bridge or custom network
 
 ---
