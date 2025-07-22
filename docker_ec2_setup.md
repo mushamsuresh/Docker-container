@@ -146,3 +146,21 @@ Go to **EC2 Dashboard → Security Groups → Inbound Rules**, and add:
    ```
 
 You should see your HTML page served by Nginx from Docker! 🎉
+---------------------------------------------------------------------------------------------------------------------
+What should a docker file contain:
+
+| 🔤 **Type**    | 💡 **Purpose**                                                                | ✅ **Example**                                   |
+| -------------- | ----------------------------------------------------------------------------- | ----------------------------------------------- |
+| **FROM**       | Specifies the **base image** for the container.                               | `FROM ubuntu:20.04`<br>`FROM openjdk:17`        |
+| **LABEL**      | Adds **metadata** like maintainer info.                                       | `LABEL maintainer="suresh@example.com"`         |
+| **ENV**        | Sets **environment variables**.                                               | `ENV APP_ENV=production`                        |
+| **WORKDIR**    | Sets the **working directory** inside the container.                          | `WORKDIR /app`                                  |
+| **COPY**       | **Copies** files from host to image.                                          | `COPY app.jar /app/app.jar`                     |
+| **ADD**        | Like `COPY` but supports **remote URLs** and **unzipping** archives.          | `ADD https://example.com/app.zip /app/`         |
+| **RUN**        | Executes **commands during build** (installs software, updates system).       | `RUN apt-get update && apt-get install -y curl` |
+| **EXPOSE**     | Informs Docker which **port the container listens** on (does not publish it). | `EXPOSE 8080`                                   |
+| **CMD**        | Specifies the **default command** to run when container starts.               | `CMD ["java", "-jar", "app.jar"]`               |
+| **ENTRYPOINT** | Sets a **fixed executable** for the container.                                | `ENTRYPOINT ["python3", "script.py"]`           |
+| **VOLUME**     | Creates a **mount point** for persistent or shared data.                      | `VOLUME /data`                                  |
+| **USER**       | Specifies the **user** to run container processes as.                         | `USER appuser`                                  |
+
