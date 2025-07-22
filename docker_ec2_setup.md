@@ -97,6 +97,10 @@ vi Dockerfile
 ```
 
 ---
+### 4. Copy a `File from local machine`:   Exit form ec2 and connect form local machine
+```bash
+ scp -i "C:\Users\sures\Downloads\linux_machine_key.pem" -r "C:\Users\sures\Downloads\employee_biodata_form" ec2-user@3.95.223.245:/home/ec2-user/
+```
 
 ## 🧱 Step 6: Build and Run Docker Container
 
