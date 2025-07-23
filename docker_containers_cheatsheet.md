@@ -165,6 +165,29 @@ CMD ["python", "app.py"]
 | `SHELL`       | Changes the shell used for `RUN` instructions.<br>📌 Example: `SHELL ["powershell", "-command"]` (for Windows images)                                 |   |          |
 | `ONBUILD`     | Adds a trigger instruction to be executed when the image is used as a base.<br>📌 Example: `ONBUILD COPY . /app`                                      |   |          |
 
+# 1. Choose a base image (depends on language/runtime)
+FROM <base-image>
+
+# 2. Set the working directory inside the container
+WORKDIR /app
+
+# 3. Set environment variables if needed (optional)
+ENV PATH /app/node_modules/.bin:$PATH
+
+# 4. Copy dependency descriptor files
+COPY <dependency-file(s)> ./
+
+# 5. Install dependencies
+RUN <install-command>
+
+# 6. Copy the rest of your project files
+COPY . ./
+
+# 7. Expose the port your app uses (optional)
+EXPOSE <port-number>
+
+# 8. Define the startup command
+CMD ["<command-to-start-app>"]
 
 ### ✅ Docker Networking commands
 docker run -d --name app --network bridge -p 8080:80 nginx     
