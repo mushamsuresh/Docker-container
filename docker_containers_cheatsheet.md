@@ -205,3 +205,29 @@ ping host.docker.internal   or ipconfig
 like this we can differentiate the containers network. 
 
 Made with 💙 for beginners exploring Docker & Containers.
+---------------------------------------------------------------------------------------------------------------------------
+✅ Examples for Different Project Types
+🔷 Node.js / React
+FROM node:18-alpine
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package*.json ./
+RUN npm install
+COPY . ./
+EXPOSE 3000
+CMD ["npm", "start"]
+🐍 Python
+FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+COPY . ./
+EXPOSE 5000
+CMD ["python", "app.py"]
+☕ Java (Spring Boot)
+FROM openjdk:17
+WORKDIR /app
+COPY target/myapp.jar app.jar
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]
+
