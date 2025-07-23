@@ -231,3 +231,28 @@ COPY target/myapp.jar app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
 
+✅ Full Demo: Container-to-Container Communication using nc
+🔹 Step 1: Create a Docker network
+docker network create demo
+🔹 Step 2: Create container2 (which listens on port 1234)
+We’ll install netcat (nc) in an Alpine container and listen:
+docker run -it --name container2 --network demo alpine sh
+Once inside the shell, install netcat:
+apk add --no-cache netcat-openbsd
+Now, run the following to listen on port 1234:
+nc -lp 1234
+✅ This puts container2 into listening mode on port 1234.
+
+🔹 Step 3: Create container1 (which will connect to container2)
+Open a new terminal and run:
+docker run -it --name container1 --network demo alpine sh
+Inside the shell, install netcat:
+apk add --no-cache netcat-openbsd
+Then connect to container2:
+nc container2 1234
+🔹 Step 4: Communicate!
+Now type something in either terminal, and it will show up in the other — like a chat:
+
+In container1: type Hello from container1!
+
+In container2: you’ll see that message.
