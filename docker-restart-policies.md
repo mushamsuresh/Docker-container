@@ -70,3 +70,26 @@ docker inspect --format='{{.HostConfig.RestartPolicy.Name}}' <container_name_or_
 
 - Restart policies **don’t apply** if you use `docker stop` (except with `always`).
 - Containers managed by **Kubernetes or Docker Swarm** have their own restart control logic.
+
+## Here's how to create a Docker container with your specified configurations:
+✅ Container Specification Recap
+Restart policy: always
+
+Network mode: bridge (default)
+
+Port mapping: host port 8081 → container port 8081
+
+Volume: mount named volume vol1 to a container path (e.g., /app/data)
+
+Image: You can choose any image (I'll use nginx as an example)
+🧱 Docker Command
+docker volume create vol1
+
+docker run -d \
+  --name my-container \
+  --restart always \
+  --network bridge \
+  -p 8081:8081 \
+  -v vol1:/app/data \
+  nginx
+
