@@ -1,15 +1,11 @@
 
 ## ✅ Docker Setup and Web Deployment on EC2 using Terraform & Docker
-
 ---
-
 ### 🚀 Step 1: Launch an EC2 Linux Instance with Existing Key Pair using Terraform
 
 1. Use Terraform to create a Linux EC2 instance.
 2. Ensure you reference your **existing key pair** (so you can SSH into it).
-
 ---
-
 ###  🔐 Step 2: Connect to EC2 from Your Local Machine
 
 ```bash
@@ -34,25 +30,20 @@ sudo systemctl start docker           # Start Docker service
 sudo systemctl enable docker          # Enable Docker to start on boot
 sudo usermod -aG docker ec2-user      # Add ec2-user to Docker group (optional but recommended)
 ```
-
 Now **log out and log back in** to apply the group change:
 
 ```bash
 exit
 ```
-
 Then reconnect via SSH and confirm Docker access:
-
 ```bash
 groups
 ```
-
 You should see:
 ```
 ec2-user wheel docker
 ```
 > 🔐 This avoids needing `sudo` every time you run Docker.
-
 ---
 ### ✅ Step 4: Test Docker Installation
 ```bash
@@ -64,7 +55,6 @@ Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
 ---
-
 ### 🛠️ Step 5: Create a Dockerized Nginx App
 
 ### 1. Create a working directory:
