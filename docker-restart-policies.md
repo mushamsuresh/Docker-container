@@ -1,19 +1,17 @@
 
-# 🚀 Docker Restart Policies
+### 🚀 Docker Restart Policies
 
 Docker **restart policies** are used to **automatically restart containers** under specific conditions—like on failure or when the Docker daemon restarts. This helps improve **container resilience and uptime**, especially in production environments.
 
 ---
-
-## 🔧 Syntax
+### 🔧 Syntax
 
 ```bash
 docker run --restart <policy> <image>
 ```
-
 ---
 
-## 🔄 Restart Policy Types
+### 🔄 Restart Policy Types
 
 | Policy                 | Behavior                                                                 |
 |------------------------|--------------------------------------------------------------------------|
@@ -23,14 +21,12 @@ docker run --restart <policy> <image>
 | `unless-stopped`       | Like `always`, but **won’t restart** if manually stopped by user.       |
 
 ---
-
-## ✅ Examples
+### ✅ Examples
 
 ### 1. No Restart (Default)
 ```bash
 docker run --restart no nginx
 ```
-
 ### 2. Always Restart
 ```bash
 docker run --restart always nginx
@@ -45,15 +41,12 @@ docker run --restart on-failure:3 myapp
 ```bash
 docker run --restart unless-stopped redis
 ```
-
 ---
-
 ## 🔍 Check Restart Policy of a Container
 
 ```bash
 docker inspect --format='{{.HostConfig.RestartPolicy.Name}}' <container_name_or_id>
 ```
-
 ---
 
 ## 📌 Recommended Usage
@@ -65,25 +58,12 @@ docker inspect --format='{{.HostConfig.RestartPolicy.Name}}' <container_name_or_
 | Manual testing/debugging        | `no`                   |
 
 ---
-
 ## ⚠️ Notes
-
 - Restart policies **don’t apply** if you use `docker stop` (except with `always`).
 - Containers managed by **Kubernetes or Docker Swarm** have their own restart control logic.
-
 ## Here's how to create a Docker container with your specified configurations:
-✅ Container Specification Recap
-Restart policy: always
-
-Network mode: bridge (default)
-
-Port mapping: host port 8081 → container port 8081
-
-Volume: mount named volume vol1 to a container path (e.g., /app/data)
-
-Image: You can choose any image (I'll use nginx as an example)
 🧱 Docker Command
-docker volume create vol1
+**docker volume create vol1**
 
 docker run -d \
   --name my-container \
