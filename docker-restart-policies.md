@@ -1,4 +1,3 @@
-
 ### 🚀 Docker Restart Policies
 
 Docker **restart policies** are used to **automatically restart containers** under specific conditions—like on failure or when the Docker daemon restarts. This helps improve **container resilience and uptime**, especially in production environments.
