@@ -165,94 +165,64 @@ CMD ["python", "app.py"]
 | `SHELL`       | Changes the shell used for `RUN` instructions.<br>📌 Example: `SHELL ["powershell", "-command"]` (for Windows images)                                 |   |          |
 | `ONBUILD`     | Adds a trigger instruction to be executed when the image is used as a base.<br>📌 Example: `ONBUILD COPY . /app`                                      |   |          |
 
-## 1. Choose a base image (depends on language/runtime)
+**1. Choose a base image (depends on language/runtime)**
 FROM <base-image>
 
-## 2. Set the working directory inside the container
+**2. Set the working directory inside the container**
 WORKDIR /app
 
-## 3. Set environment variables if needed (optional)
+**3. Set environment variables if needed (optional)**
 ENV PATH /app/node_modules/.bin:$PATH
 
-## 4. Copy dependency descriptor files
+**4. Copy dependency descriptor files**
 COPY <dependency-file(s)> ./
 
-## 5. Install dependencies
+**5. Install dependencies**
 RUN <install-command>
 
-## 6. Copy the rest of your project files
+**6. Copy the rest of your project files**
 COPY . ./
 
-## 7. Expose the port your app uses (optional)
+**7. Expose the port your app uses (optional)**
 EXPOSE <port-number>
 
-## 8. Define the startup command
+**8. Define the startup command**
 CMD ["<command-to-start-app>"]
 
 ### ✅ Docker Networking commands
 docker run -d --name app --network bridge -p 8080:80 nginx     
-## Bridge host network. It is like an apt building
+**Bridge host network. It is like an apt building**
 docker run --network host nginx       
-## Host network. It is like moving into a main house with no reception. easy access but less secure
+**Host network. It is like moving into a main house with no reception. easy access but less secure**
 docker run --network none busybox   
-## You live in a completely isolated bunker. None network
+**You live in a completely isolated bunker. None network**
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_container
-## To find the docker container ip address which talk to internal containers. Not connected to external port.
+**To find the docker container ip address which talk to internal containers. Not connected to external port.**
 ping host.docker.internal   or ipconfig  
-## this will give the docker IPv4 address, which talks to external world.
+**this will give the docker IPv4 address, which talks to external world**
  
-## Note: Every container will have the same 8080:80 port only. Ex: container-1 port 8080:80, container-2 port 8081
+**_Note: Every container will have the same 8080:80 port only. Ex: container-1 port 8080:80, container-2 port 8081_**
 like this we can differentiate the containers network. 
-
-Made with 💙 for beginners exploring Docker & Containers.
----------------------------------------------------------------------------------------------------------------------------
-✅ Examples for Different Project Types
-🔷 Node.js / React
-FROM node:18-alpine
-WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package*.json ./
-RUN npm install
-COPY . ./
-EXPOSE 3000
-CMD ["npm", "start"]
-🐍 Python
-FROM python:3.10-slim
-WORKDIR /app
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
-COPY . ./
-EXPOSE 5000
-CMD ["python", "app.py"]
-☕ Java (Spring Boot)
-FROM openjdk:17
-WORKDIR /app
-COPY target/myapp.jar app.jar
-EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
-
 ✅ Full Demo: Container-to-Container Communication using nc
 🔹 Step 1: Create a Docker network
-docker network create demo
+- docker network create demo
 🔹 Step 2: Create container2 (which listens on port 1234)
-We’ll install netcat (nc) in an Alpine container and listen:
-docker run -it --name container2 --network demo alpine sh
-Once inside the shell, install netcat:
-apk add --no-cache netcat-openbsd
-Now, run the following to listen on port 1234:
-nc -lp 1234
+- We’ll install netcat (nc) in an Alpine container and listen:
+- docker run -it --name container2 --network demo alpine sh
+- Once inside the shell, install netcat:
+- apk add --no-cache netcat-openbsd
+- Now, run the following to listen on port 1234:
+- nc -lp 1234
 ✅ This puts container2 into listening mode on port 1234.
 
 🔹 Step 3: Create container1 (which will connect to container2)
-Open a new terminal and run:
-docker run -it --name container1 --network demo alpine sh
-Inside the shell, install netcat:
-apk add --no-cache netcat-openbsd
-Then connect to container2:
-nc container2 1234
+- Open a new terminal and run:
+- docker run -it --name container1 --network demo alpine sh
+- Inside the shell, install netcat:
+- apk add --no-cache netcat-openbsd
+- Then connect to container2:
+- nc container2 1234
 🔹 Step 4: Communicate!
-Now type something in either terminal, and it will show up in the other — like a chat:
-
-In container1: type Hello from container1!
-
-In container2: you’ll see that message.
+- Now type something in either terminal, and it will show up in the other — like a chat:
+I- n container1: type Hello from container1!
+- In container2: you’ll see that message.
