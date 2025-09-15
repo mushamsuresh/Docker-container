@@ -2,13 +2,7 @@
 
 Docker **restart policies** are used to **automatically restart containers** under specific conditions—like on failure or when the Docker daemon restarts. This helps improve **container resilience and uptime**, especially in production environments.
 
----
-### 🔧 Syntax
-
-```bash
-docker run --restart <policy> <image>
-```
----
+**🔧 Syntax docker**     run --restart <policy> <image>F
 
 ### 🔄 Restart Policy Types
 
@@ -21,31 +15,19 @@ docker run --restart <policy> <image>
 
 ---
 ### ✅ Examples
+### 🔄 Docker Restart Policies
 
-### 1. No Restart (Default)
-```bash
-docker run --restart no nginx
-```
-### 2. Always Restart
-```bash
-docker run --restart always nginx
-```
+| Policy | Command |
+|--------|---------|
+| **1. No Restart (Default)** | `docker run --restart no nginx` |
+| **2. Always Restart** | `docker run --restart always nginx` |
+| **3. On Failure (with Retry Limit)** | `docker run --restart on-failure:3 myapp` |
+| **4. Unless Stopped** | `docker run --restart unless-stopped redis` |
 
-### 3. On Failure (with Retry Limit)
-```bash
-docker run --restart on-failure:3 myapp
-```
+### 🔍 Check Restart Policy of a Container
 
-### 4. Unless Stopped
-```bash
-docker run --restart unless-stopped redis
-```
----
-## 🔍 Check Restart Policy of a Container
-
-```bash
 docker inspect --format='{{.HostConfig.RestartPolicy.Name}}' <container_name_or_id>
-```
+  
 ---
 
 ## 📌 Recommended Usage
@@ -57,10 +39,10 @@ docker inspect --format='{{.HostConfig.RestartPolicy.Name}}' <container_name_or_
 | Manual testing/debugging        | `no`                   |
 
 ---
-## ⚠️ Notes
+### ⚠️ Note
 - Restart policies **don’t apply** if you use `docker stop` (except with `always`).
 - Containers managed by **Kubernetes or Docker Swarm** have their own restart control logic.
-## Here's how to create a Docker container with your specified configurations:
+### Here's how to create a Docker container with your specified configurations:
 🧱 Docker Command
 **docker volume create vol1**
 
