@@ -1,4 +1,3 @@
-
 ## ✅ Docker Setup and Web Deployment on EC2 using Terraform & Docker
 ---
 ### 🚀 Step 1: Launch an EC2 Linux Instance with Existing Key Pair using Terraform
