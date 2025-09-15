@@ -1,26 +1,24 @@
 
-# ✅ Docker Setup and Web Deployment on EC2 using Terraform & Docker
+## ✅ Docker Setup and Web Deployment on EC2 using Terraform & Docker
 
 ---
 
-## 🚀 Step 1: Launch an EC2 Linux Instance with Existing Key Pair using Terraform
+### 🚀 Step 1: Launch an EC2 Linux Instance with Existing Key Pair using Terraform
 
 1. Use Terraform to create a Linux EC2 instance.
 2. Ensure you reference your **existing key pair** (so you can SSH into it).
 
 ---
 
-## 🔐 Step 2: Connect to EC2 from Your Local Machine
+###  🔐 Step 2: Connect to EC2 from Your Local Machine
 
 ```bash
 ssh -i /path/to/your-key.pem ec2-user@<EC2-PUBLIC-IP>
 ```
-
 Replace `<EC2-PUBLIC-IP>` with your actual EC2 instance public IP.
 
 ---
-
-## 🐳 Step 3: Install Docker in Amazon Linux 2023
+### 🐳 Step 3: Install Docker in Amazon Linux 2023
 
 Since we're using **Amazon Linux 2023**, use the following commands:
 
@@ -53,86 +51,71 @@ You should see:
 ```
 ec2-user wheel docker
 ```
-
 > 🔐 This avoids needing `sudo` every time you run Docker.
 
 ---
-
-## ✅ Step 4: Test Docker Installation
-
+### ✅ Step 4: Test Docker Installation
 ```bash
 docker run hello-world
 ```
-
 Expected output:
 ```
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
-
 ---
 
-## 🛠️ Step 5: Create a Dockerized Nginx App
+### 🛠️ Step 5: Create a Dockerized Nginx App
 
 ### 1. Create a working directory:
 ```bash
 mkdir myapp && cd myapp
 ```
-
 ### 2. Create an `index.html`:
 ```bash
 echo "<h1>Hello from Dockerized Nginx!</h1>" > index.html
 ```
-
 ### 3. Create a Dockerfile:
 ```Dockerfile
 FROM nginx
 COPY index.html /usr/share/nginx/html/
 ```
-
 To create and edit:
 ```bash
 vi Dockerfile
 # Press 'i' to insert, paste content, then press 'Esc', type ':wq' and hit Enter.
 ```
-
 ---
 ### 4. Copy a `File from local machine`:   Exit form ec2 and connect form local machine
 ```bash
  scp -i "C:\Users\sures\Downloads\linux_machine_key.pem" -r "C:\Users\sures\Downloads\employee_biodata_form" ec2-user@3.95.223.245:/home/ec2-user/
 ```
 
-## 🧱 Step 6: Build and Run Docker Container
+### 🧱 Step 6: Build and Run Docker Container
 
 ```bash
 docker build -t myapp .     ## build a image
 docker run -d -p 80:80 myapp   ## create a container and run
 ```
-
 ---
-
-## 🧪 Step 7: Verify Everything Works
+### 🧪 Step 7: Verify Everything Works
 
 ### ✅ Check if container is running:
 ```bash
 docker ps
 ```
-
 You should see something like:
 ```
 CONTAINER ID   IMAGE   ...   PORTS                NAMES
 xxxxxxxxxxxx   myapp   ...   0.0.0.0:80->80/tcp   ...
 ```
-
 ### ✅ Check HTML inside container:
 ```bash
 docker exec -it <container_id> bash
 cat /usr/share/nginx/html/index.html
 ```
-
 ---
-
-## 🔓 Step 8: Open EC2 Port 80 to Internet
+### 🔓 Step 8: Open EC2 Port 80 to Internet
 
 Go to **EC2 Dashboard → Security Groups → Inbound Rules**, and add:
 
@@ -141,19 +124,16 @@ Go to **EC2 Dashboard → Security Groups → Inbound Rules**, and add:
 | HTTP  | TCP      | 80   | 0.0.0.0/0  |
 
 ---
-
-## 🌐 Step 9: View in Browser
+### 🌐 Step 9: View in Browser
 
 1. Get your EC2 public IP:
    ```bash
    curl http://checkip.amazonaws.com
    ```
-
 2. Open in browser:
    ```
    http://<your-ec2-ip>
    ```
-
 You should see your HTML page served by Nginx from Docker! 🎉
 ---------------------------------------------------------------------------------------------------------------------
 What should a docker file contain:
