@@ -6,7 +6,6 @@
 2. Ensure you reference your **existing key pair** (so you can SSH into it).
 ---
 ###  🔐 Step 2: Connect to EC2 from Your Local Machine
-
 ```bash
 ssh -i /path/to/your-key.pem ec2-user@<EC2-PUBLIC-IP>
 ```
@@ -14,7 +13,6 @@ Replace `<EC2-PUBLIC-IP>` with your actual EC2 instance public IP.
 
 ---
 ### 🐳 Step 3: Install Docker in Amazon Linux 2023
-
 Since we're using **Amazon Linux 2023**, use the following commands:
 
 ```bash
@@ -30,7 +28,6 @@ sudo systemctl enable docker          # Enable Docker to start on boot
 sudo usermod -aG docker ec2-user      # Add ec2-user to Docker group (optional but recommended)
 ```
 Now **log out and log back in** to apply the group change:
-
 ```bash
 exit
 ```
@@ -55,7 +52,6 @@ This message shows that your installation appears to be working correctly.
 ```
 ---
 ### 🛠️ Step 5: Create a Dockerized Nginx App
-
 ### 1. Create a working directory:
 ```bash
 mkdir myapp && cd myapp
@@ -79,16 +75,13 @@ vi Dockerfile
 ```bash
  scp -i "C:\Users\sures\Downloads\linux_machine_key.pem" -r "C:\Users\sures\Downloads\employee_biodata_form" ec2-user@3.95.223.245:/home/ec2-user/
 ```
-
 ### 🧱 Step 6: Build and Run Docker Container
-
 ```bash
 docker build -t myapp .     ## build a image
 docker run -d -p 80:80 myapp   ## create a container and run
 ```
 ---
 ### 🧪 Step 7: Verify Everything Works
-
 ### ✅ Check if container is running:
 ```bash
 docker ps
@@ -105,7 +98,6 @@ cat /usr/share/nginx/html/index.html
 ```
 ---
 ### 🔓 Step 8: Open EC2 Port 80 to Internet
-
 Go to **EC2 Dashboard → Security Groups → Inbound Rules**, and add:
 
 | Type  | Protocol | Port | Source     |
@@ -114,7 +106,6 @@ Go to **EC2 Dashboard → Security Groups → Inbound Rules**, and add:
 
 ---
 ### 🌐 Step 9: View in Browser
-
 1. Get your EC2 public IP:
    ```bash
    curl http://checkip.amazonaws.com
