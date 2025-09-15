@@ -1,7 +1,7 @@
 
-# Docker Volumes - Practice Guide
+### Docker Volumes - Practice Guide
 
-## 1. Sharing a Named Volume Between Containers
+### 1. Sharing a Named Volume Between Containers
 
 This helps two containers read/write to the same data.
 
@@ -79,6 +79,3 @@ docker container rm -f containerA containerB devcontainer
 docker volume rm sharedvol
 ```
 
----
-
-Happy Docker practicing! 🐳
