@@ -189,17 +189,48 @@ EXPOSE <port-number>
 **8. Define the startup command**
 CMD ["<command-to-start-app>"]
 
-### ✅ Docker Networking commands
-docker run -d --name app --network bridge -p 8080:80 nginx     
-**Bridge host network. It is like an apt building**
-docker run --network host nginx       
-**Host network. It is like moving into a main house with no reception. easy access but less secure**
-docker run --network none busybox   
-**You live in a completely isolated bunker. None network**
+# ✅ Docker Networking Commands
+
+### 🌉 Bridge Network
+```bash
+docker run -d --name app --network bridge -p 8080:80 nginx
+```
+**Bridge host network** – It is like an apartment building.
+
+---
+
+### 🏠 Host Network
+```bash
+docker run --network host nginx
+```
+**Host network** – It is like moving into a main house with no reception. Easy access but less secure.
+
+---
+
+### 🚪 None Network
+```bash
+docker run --network none busybox
+```
+**None network** – You live in a completely isolated bunker. No network connectivity.
+
+---
+
+### 🔍 Inspect Container Network
+```bash
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_container
-**To find the docker container ip address which talk to internal containers. Not connected to external port.**
-ping host.docker.internal   or ipconfig  
-**this will give the docker IPv4 address, which talks to external world**
+```
+**Find the Docker container IP address** that talks to internal containers. Not connected to external port.
+
+---
+
+### 🌐 Host Access / External IP
+```bash
+ping host.docker.internal
+# or
+ipconfig
+```
+**This gives the Docker IPv4 address** which talks to the external world.
+
  
 **_Note: Every container will have the same 8080:80 port only. Ex: container-1 port 8080:80, container-2 port 8081_**
 like this we can differentiate the containers network. 
